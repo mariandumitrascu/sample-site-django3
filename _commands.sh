@@ -104,3 +104,8 @@ python manage.py migrate
 
 # interact with database
 python manage.py shell
+
+
+#########################################################
+# testing pools
+python manage.py test polls
