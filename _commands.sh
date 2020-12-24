@@ -1,0 +1,106 @@
+
+# reference:
+# https://aws.amazon.com/blogs/devops/build-and-deploy-a-federated-web-identity-application-with-aws-elastic-beanstalk-and-login-with-amazon/
+
+# reference flask w aws:
+# https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-flask.html
+
+# reference eb w django
+# https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-django.html
+
+# IP Address	98.199.135.8
+# Hostname	c-98-199-135-8.hsd1.tx.comcast.net
+
+
+
+pip install virtualenv
+# For Mac
+# virtualenv --python=python3.7 weather-env
+# For Windows
+virtualenv env
+
+source ./env/bin/activate
+
+# install all required packages
+# pip install -r requirements.txt
+
+pip install flask==1.0.2
+pip freeze
+pip freeze >requirements.txt
+
+
+# sudo pip install dash dash-renderer dash-html-components dash-core-components plotly
+git init
+git add .
+git commit -m "first commit"
+git remote add origin https://github.com/mariandumitrascu/sample-site-eb.git
+git branch -M main
+git push -u origin main
+
+
+# git remote add origin https://github.com/mariandumitrascu/sample-site-eb.git
+git branch -M main
+git push -u origin main
+
+##################################################################################################
+eb init -p python-3.6 flask-demo --region us-east-1
+eb init
+
+##################################################################################################
+eb create flask-env
+eb open
+
+##################################################################################################
+eb status
+
+##################################################################################################
+eb deploy
+
+##################################################################################################
+eb terminate --force
+
+
+# ec2
+ec2-3-95-29-190.compute-1.amazonaws.com
+
+ssh -i /Users/marian.dumitrascu/Dropbox/Work/current/hudi/aws-hudi-demo/key-pairs/md-labs-key-pair.pem ec2-user@ec2-3-95-29-190.compute-1.amazonaws.com
+ssh -i /Users/marian.dumitrascu/Dropbox/Work/current/hudi/aws-hudi-demo/key-pairs/md-labs-key-pair.pem root@ec2-3-95-29-190.compute-1.amazonaws.com
+
+# the app was deployed:
+/opt/python/bundle/2/app/application.py
+
+# configure ssl for beanstack
+# https://colintoh.com/blog/configure-ssl-for-aws-elastic-beanstalk
+
+####################################################################################################
+# django
+
+pip install django
+python -m django --version
+# 3.1.4
+django-admin startproject mysite
+
+cd /Users/marian.dumitrascu/Dropbox/Work/Guardian/embeded-analytics/sample-site-django3/mysite
+
+python manage.py migrate
+python manage.py startapp polls
+
+########################################################################################
+python manage.py createsuperuser
+
+python ./mysite/manage.py runserver 8089
+python manage.py runserver 8089
+
+########################################################################################
+# polls app
+
+# generate code to update the db
+python manage.py makemigrations polls
+# execute the code to create/update db
+python manage.py sqlmigrate polls 0001
+# update ???
+python manage.py migrate
+
+
+# interact with database
+python manage.py shell
