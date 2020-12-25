@@ -1,7 +1,19 @@
 from django.contrib import admin
-
-# Register your models here.
-
 from .models import Question
+from .models import Choice
 
-admin.site.register(Question)
+
+class QuestionAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (
+            'Question information',
+            {
+                'fields': ['question_text']
+            }
+        ),
+        ('Date information',        {'fields': ['pub_date']         }),
+    ]
+
+
+admin.site.register(Question, QuestionAdmin)
+admin.site.register(Choice)
