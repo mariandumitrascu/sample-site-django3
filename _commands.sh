@@ -80,7 +80,7 @@ python -m django --version
 # 3.1.4
 django-admin startproject mysite
 
-cd /Users/marian.dumitrascu/Dropbox/Work/Guardian/embeded-analytics/sample-site-django3/mysite
+cd /Users/marian.dumitrascu/Dropbox/Work/Current/python-cms/sample-site-django3/mysite
 
 python manage.py migrate
 python manage.py startapp polls
@@ -89,7 +89,7 @@ python manage.py startapp polls
 python manage.py createsuperuser
 
 python ./mysite/manage.py runserver 8989
-python manage.py runserver 8089
+python manage.py runserver 8989
 
 ########################################################################################
 # polls app

@@ -31,3 +31,8 @@ def current_time(format_string):
 def show_results(poll):
     choices = poll.choice_set.all()
     return {'choices': choices}
+
+
+# from django.template.loader import get_template
+# t = get_template('results2.html')
+# register.inclusion_tag(t)(show_results)
