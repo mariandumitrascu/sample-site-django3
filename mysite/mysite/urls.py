@@ -20,3 +20,10 @@ urlpatterns = [
     path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls),
 ]
+
+
+# admin.site.site_header = 'Guardian BI Cards Portal admin'
+
+# reference: https://docs.djangoproject.com/en/3.1/ref/contrib/admin/#overriding-default-admin-site
+admin.sites.AdminSite.site_header = 'Guardian BI Cards Portal admin'
+admin.sites.AdminSite.site_title = 'Guardian BI Cards Portal'

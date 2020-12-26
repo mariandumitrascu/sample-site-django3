@@ -1,0 +1,15 @@
+
+
+{% extends "admin/base.html" %}
+
+{% comment %} {% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Guardian BI Portal site admin') }}{% endblock %} {% endcomment %}
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Guardian BI Portal site admin') }}{% endblock %}
+
+{% block branding %}
+{% comment %} <h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Guardian BI Portal administration') }}</a></h1> {% endcomment %}
+{% comment %} <h1 id="site-name"><a href="{% url 'admin:index' %}">Guardian BI Portal administration</a></h1> {% endcomment %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Guardian BI Portal administration') }}</a></h1>
+
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
