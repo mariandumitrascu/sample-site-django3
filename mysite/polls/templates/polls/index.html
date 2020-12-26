@@ -1,6 +1,8 @@
 
-v: 001<br>
+v: 002<br>
 
+
+{% load poll_extras %}
 {% load static %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
@@ -16,3 +18,7 @@ v: 001<br>
 {% else %}
     <p>No polls are available.</p>
 {% endif %}
+
+
+<h1>{{ 'soooooooomevariable'|cut:"oo" }}</h1>
+{% current_time format_string="%Y-%m-%d %I:%M %p" %}

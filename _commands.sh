@@ -88,7 +88,7 @@ python manage.py startapp polls
 ########################################################################################
 python manage.py createsuperuser
 
-python ./mysite/manage.py runserver 8089
+python ./mysite/manage.py runserver 8989
 python manage.py runserver 8089
 
 ########################################################################################

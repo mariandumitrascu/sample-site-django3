@@ -1,4 +1,4 @@
-
+{% load poll_extras %}
 
 <h1>{{ question.question_text }}</h1>
 
@@ -9,3 +9,6 @@
 </ul>
 
 <a href="{% url 'polls:detail' question.id %}">Vote again?</a>
+<hr>
+
+{% comment %} {% show_results question %} {% endcomment %}
