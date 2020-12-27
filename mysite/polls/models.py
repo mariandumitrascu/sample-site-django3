@@ -8,7 +8,10 @@ import datetime
 # https://docs.djangoproject.com/en/3.1/intro/tutorial02/
 
 class Question(models.Model):
-    question_text = models.CharField(max_length=200)
+    question_text = models.CharField(
+        max_length=200,
+
+        )
     pub_date = models.DateTimeField('date published')
 
     def __str__(self):
@@ -105,6 +108,7 @@ class StudyElement(models.Model):
         # auto_now=True, # Automatically set the field to now every time the object is saved. Useful for “last-modified” timestamps.
         auto_now_add=True, # Automatically set the field to now when the object is first created. Useful for creation of timestamps.
         editable=True,
+
     )
     ##############################################
     my_file_field_01 = models.FileField(
@@ -187,3 +191,39 @@ class MySpecialUser(models.Model):
     class Meta:
         ordering = ["user"]
         verbose_name_plural = "myspecials"
+
+
+#####################################################################################################################################################
+# reference
+# https://docs.djangoproject.com/en/dev/topics/forms/modelforms/
+
+from django.db import models
+from django.forms import ModelForm
+
+TITLE_CHOICES = [
+    ('MR', 'Mr.'),
+    ('MRS', 'Mrs.'),
+    ('MS', 'Ms.'),
+]
+
+class Author(models.Model):
+    name = models.CharField(max_length=100)
+    title = models.CharField(max_length=3, choices=TITLE_CHOICES)
+    birth_date = models.DateField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+class Book(models.Model):
+    name = models.CharField(max_length=100)
+    authors = models.ManyToManyField(Author)
+
+class AuthorForm(ModelForm):
+    class Meta:
+        model = Author
+        fields = ['name', 'title', 'birth_date']
+
+class BookForm(ModelForm):
+    class Meta:
+        model = Book
+        fields = ['name', 'authors']

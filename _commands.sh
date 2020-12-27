@@ -111,8 +111,8 @@ python manage.py check
 # synchronizing the changes you made to your models with the schema in the database.
 python manage.py migrate
 
-
-# interact with database
+#########################################################################################
+# interact with the model and django api
 python manage.py shell
 
 

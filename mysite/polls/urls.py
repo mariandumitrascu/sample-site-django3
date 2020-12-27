@@ -18,6 +18,9 @@ app_name = 'polls'
 # ]
 
 urlpatterns = [
+    path('your-name/', views.view_get_name, name='nameform'),
+    path('thanks/', views.view_thanks, name='thanks'),
+
     path('', views.IndexView.as_view(), name='index'),
     path('<int:pk>/', views.DetailView.as_view(), name='detail'),
     path('<int:pk>/results/', views.ResultsView.as_view(), name='results'),

@@ -11,7 +11,7 @@
             "program": "${workspaceFolder}/mysite/manage.py",
             "args": [
                 "runserver",
-                "8089"
+                "8989"
             ],
             "django": true
         }
