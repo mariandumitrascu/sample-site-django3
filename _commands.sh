@@ -94,11 +94,21 @@ python manage.py runserver 8989
 ########################################################################################
 # polls app
 
-# generate code to update the db
+# By running makemigrations, you’re telling Django that you’ve made some changes to your models
+# and that you’d like the changes to be stored as a migration.
 python manage.py makemigrations polls
-# execute the code to create/update db
-python manage.py sqlmigrate polls 0001
-# update ???
+
+# The sqlmigrate command takes migration names and returns their SQL:
+# this is not modifying anything in the database
+python manage.py sqlmigrate polls 0002
+
+# checks for any problems in your project without making migrations or touching the database.
+python manage.py check
+
+# takes all the migrations that haven’t been applied
+# (Django tracks which ones are applied using a special table in your database called django_migrations)
+# and runs them against your database - essentially,
+# synchronizing the changes you made to your models with the schema in the database.
 python manage.py migrate
 
 
