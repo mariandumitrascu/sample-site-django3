@@ -136,3 +136,8 @@ python manage.py startapp blog
 python manage.py makemigrations blog
 python manage.py migrate
 
+#####################################
+from blog.models import Blog
+b = Blog(name='Beatles Blog', tagline='All the latest Beatles news.')
+b.save()
+exit()
