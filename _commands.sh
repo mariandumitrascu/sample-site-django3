@@ -119,3 +119,20 @@ python manage.py shell
 #########################################################
 # testing pools
 python manage.py test polls
+
+##############################################################################################################
+# django-polymorfic
+
+pip install django-polymorphic
+python manage.py startapp polymorf
+python manage.py makemigrations polymorf
+# python manage.py sqlmigrate polymorf 0001
+python manage.py migrate
+
+
+##############################################################################################################
+# blog
+python manage.py startapp blog
+python manage.py makemigrations blog
+python manage.py migrate
+

@@ -10,7 +10,7 @@ class ChoiceInline(admin.StackedInline):
 # class ChoiceInline(admin.TabularInline):
     model = Choice
     extra = 1
-
+@admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
     fieldsets = [
         (
@@ -45,8 +45,11 @@ class QuestionAdmin(admin.ModelAdmin):
     list_per_page = 2
 
 
+
 # this makes to appear in the admin menu
 # QuestionAdmin makes those separator bars between field sets to show
-admin.site.register(Question, QuestionAdmin)
+# admin.site.register(Question, QuestionAdmin)
+
+
 # admin.site.register(Choice)
 
