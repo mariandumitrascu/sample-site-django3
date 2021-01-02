@@ -6,12 +6,15 @@ from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.db.models import Count
 
 from .models import Board
 from .models import Topic
 from .models import Post
 
 from .forms import NewTopicForm
+from .forms import PostForm
 
 
 def home(request):
@@ -32,13 +35,15 @@ def board_topics(request, pk):
 
     # board = Board.objects.get(pk=pk)
     board = get_object_or_404(Board, pk=pk)
+    topics = board.topics.order_by('-last_updated').annotate(replies=Count('posts'))  # md: very interesting
     context = {
-        'board': board
+        'board': board,
+        'topics': topics,
     }
 
     return render(request, 'boards/topics.html', context)
 
-
+@login_required
 def new_topic(request, pk):
 
     board = get_object_or_404(Board, pk=pk)
@@ -48,8 +53,6 @@ def new_topic(request, pk):
     if request.method == 'POST':
         # subject = request.POST['subject']
         # message = request.POST['message']
-
-        # user = User.objects.first()  # TODO: get the currently logged in user
 
         # topic = Topic.objects.create(
         #     subject=subject,
@@ -68,17 +71,17 @@ def new_topic(request, pk):
 
             topic = form.save(commit = False)
             topic.board = board
-            topic.starter = user
+            topic.starter = request.user
             topic.save()
 
             post = Post.objects.create(
                 message = form.cleaned_data.get('message'),
                 topic = topic,
-                created_by = user
+                created_by = request.user
             )
 
             # return redirect('/boards/', pk=board.pk)  # TODO: redirect to the created topic page
-            return HttpResponseRedirect(reverse('boards:board_topics', args=(board.pk,))  )
+            return HttpResponseRedirect(reverse('boards:topic_posts', args=(board.pk,topic.pk, ))  )
 
     else:
         form = NewTopicForm()
@@ -91,3 +94,42 @@ def new_topic(request, pk):
     # return HttpResponse('hello from boards application 2')
 
     return render(request, 'boards/new_topic.html', context)
+
+
+def topic_posts(request, pk, topic_pk):
+
+    topic = get_object_or_404(Topic, board__pk=pk, pk=topic_pk)
+
+    topic.views += 1
+    topic.save()
+
+    context = {
+        'topic': topic
+    }
+
+    return render(request, 'boards/topic_posts.html', context)
+
+
+@login_required
+def reply_topic(request, pk, topic_pk):
+
+    topic = get_object_or_404(Topic, board__pk=pk, pk=topic_pk)
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.topic = topic
+            post.created_by = request.user
+            post.save()
+
+            return redirect(reverse('boards:topic_posts', args=(pk, topic_pk)))
+            # return redirect('boards/topic_posts', pk=pk, topic_pk=topic_pk)
+    else:
+        form = PostForm()
+
+    context ={
+        'topic': topic,
+        'form': form
+    }
+
+    return render(request, 'boards/reply_topic.html', context)

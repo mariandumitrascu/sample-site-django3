@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+# from decouple import config, Csv
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -135,4 +135,16 @@ LOGOUT_REDIRECT_URL = 'boards:home2'
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'boards:home2'
 LOGOUT_REDIRECT_URL = 'boards:home2'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = ''
+EMAIL_PORT = 587
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = True
+
+DEFAULT_FROM_EMAIL = 'Django Boards <md@dumitrascu.net>'
+EMAIL_SUBJECT_PREFIX = '[Django Boards] '
+
 

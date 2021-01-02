@@ -158,6 +158,7 @@ python manage.py runserver 8989
 
 pip install Markdown
 pip install django-widget-tweaks
+pip install decouple
 
 python manage.py makemigrations boards
 python manage.py migrate

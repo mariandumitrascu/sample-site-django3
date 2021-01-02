@@ -21,5 +21,7 @@ urlpatterns = [
     path('', views.home2, name='home2'),
     path('<int:pk>', views.board_topics, name='board_topics'),
     path('<int:pk>/new/', views.new_topic, name='new_topic'),
+    path('<int:pk>/topics/<int:topic_pk>/', views.topic_posts, name='topic_posts'),
+    path('<int:pk>/topics/<int:topic_pk>/reply/', views.reply_topic, name='reply_topic'),
 
 ]

@@ -45,5 +45,13 @@ marian.save()
 ##############################################################################################################
 ##############################################################################################################
 
+from django.db.models import Count
+from boards.models import Board
 
+board = Board.objects.get(pk=1)
+
+topics = board.topics.order_by('-last_updated').annotate(replies=Count('posts'))
+
+for topic in topics:
+    print(topic.replies)
 
