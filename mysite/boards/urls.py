@@ -20,5 +20,6 @@ app_name = 'boards'
 urlpatterns = [
     path('', views.home2, name='home2'),
     path('<int:pk>', views.board_topics, name='board_topics'),
+    path('<int:pk>/new/', views.new_topic, name='new_topic'),
 
 ]
