@@ -31,10 +31,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    
     'polymorphic',
     'blog.apps.BlogConfig',
     'polymorf.apps.PolymorfConfig',
     'polls.apps.PollsConfig',
+    'boards.apps.BoardsConfig',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

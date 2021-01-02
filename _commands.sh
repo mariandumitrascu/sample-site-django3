@@ -20,6 +20,7 @@ pip install virtualenv
 virtualenv env
 
 source ./env/bin/activate
+source /Users/marian.dumitrascu/Dropbox/Work/Current/python-cms/sample-site-django3/env/bin/activate
 
 # install all required packages
 # pip install -r requirements.txt
@@ -121,6 +122,8 @@ python manage.py shell
 python manage.py test polls
 
 ##############################################################################################################
+##############################################################################################################
+##############################################################################################################
 # django-polymorfic
 
 pip install django-polymorphic
@@ -141,3 +144,18 @@ from blog.models import Blog
 b = Blog(name='Beatles Blog', tagline='All the latest Beatles news.')
 b.save()
 exit()
+
+##############################################################################################################
+##############################################################################################################
+##############################################################################################################
+# beginers guide
+cd /Users/marian.dumitrascu/Dropbox/Work/Current/python-cms/sample-site-django3/mysite
+python manage.py startapp boards
+python manage.py runserver 8989
+
+pip install Markdown
+
+python manage.py makemigrations boards
+python manage.py migrate
+
+python manage.py test --verbosity=2
