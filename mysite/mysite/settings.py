@@ -31,12 +31,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    
+
     'polymorphic',
     'blog.apps.BlogConfig',
     'polymorf.apps.PolymorfConfig',
     'polls.apps.PollsConfig',
     'boards.apps.BoardsConfig',
+    'accounts.apps.AccountsConfig',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +130,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGOUT_REDIRECT_URL = 'boards:home2'
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'boards:home2'
+LOGOUT_REDIRECT_URL = 'boards:home2'
+

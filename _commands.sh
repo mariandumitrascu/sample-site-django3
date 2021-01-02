@@ -28,6 +28,9 @@ source /Users/marian.dumitrascu/Dropbox/Work/Current/python-cms/sample-site-djan
 pip install flask==1.0.2
 pip freeze
 pip freeze >requirements.txt
+#######################################################################################################
+# clean python cache
+find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
 
 
 # sudo pip install dash dash-renderer dash-html-components dash-core-components plotly
@@ -154,8 +157,15 @@ python manage.py startapp boards
 python manage.py runserver 8989
 
 pip install Markdown
+pip install django-widget-tweaks
 
 python manage.py makemigrations boards
 python manage.py migrate
 
 python manage.py test --verbosity=2
+
+npm install --global htmlhint
+
+#####################################################
+# accounts
+python manage.py startapp accounts
