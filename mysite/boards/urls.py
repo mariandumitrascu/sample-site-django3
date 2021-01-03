@@ -24,4 +24,6 @@ urlpatterns = [
     path('<int:pk>/topics/<int:topic_pk>/', views.topic_posts, name='topic_posts'),
     path('<int:pk>/topics/<int:topic_pk>/reply/', views.reply_topic, name='reply_topic'),
 
+    path('new_post/', views.NewPostView.as_view(), name='new_post'),
+
 ]

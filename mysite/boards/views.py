@@ -8,6 +8,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count
+from django.views.generic import View
 
 from .models import Board
 from .models import Topic
@@ -133,3 +134,23 @@ def reply_topic(request, pk, topic_pk):
     }
 
     return render(request, 'boards/reply_topic.html', context)
+
+
+class NewPostView(View):
+    def post(self, request):
+        form = PostForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('boards:post_list'))
+
+        context = {
+            'form': form
+        }
+        return render(request, 'boards/new_post.html', context)
+
+    def get(self, request):
+        form = PostForm()
+        context = {
+            'form': form
+        }
+        return render(request, 'boards/new_post.html', context)
