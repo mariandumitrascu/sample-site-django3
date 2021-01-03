@@ -8,4 +8,6 @@ app_name = 'accounts'
 
 urlpatterns = [
     path('', views.signup, name='signup'),
+
+    path('myaccount/', views.UserUpdateView.as_view(), name='myaccount')
 ]
